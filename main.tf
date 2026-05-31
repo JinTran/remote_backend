@@ -10,3 +10,9 @@ resource "aws_ebs_volume" "ebs_volume" {
   availability_zone = aws_instance.vm_dev1.availability_zone
   size              = 8
 }
+
+resource "aws_volume_attachment" "ebs_volume_attachment" {
+  device_name = "/dev/sdh"
+  volume_id   = aws_ebs_volume.ebs_volume.id
+  instance_id = aws_instance.vm_dev1.id
+}
